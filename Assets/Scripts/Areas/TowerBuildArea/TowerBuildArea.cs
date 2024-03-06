@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerBuildArea : MonoBehaviour
@@ -13,7 +12,6 @@ public class TowerBuildArea : MonoBehaviour
     [SerializeField] private int _goldToDelive;
     [SerializeField] private int _minimumGoldToDelive;
     [SerializeField] private TMP_Text _goldText;
-    [SerializeField] private GameObject _tower;
 
     private int _currentGoldToDelive;
     private bool _isDelivering;
@@ -72,9 +70,6 @@ public class TowerBuildArea : MonoBehaviour
             if (_currentGoldToDelive <= 0)
             {
                 GoldDelivered?.Invoke();
-
-                _tower.gameObject.SetActive(true);
-                gameObject.SetActive(false);
             }
 
             yield return deliveringInterval;

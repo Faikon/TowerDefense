@@ -13,11 +13,11 @@ public class TowerBuildAreaView : MonoBehaviour
     private Transform _transform;
 
     //[SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] TowerSelectionView _towerSelectionView;
     [SerializeField] Image _fillImage;
     [SerializeField] private float _pingPongHalfScaleDuration = 0.5f;
     [SerializeField] private Vector3 _pingPongScaleAddition = new Vector3(0.2f, 0.2f, 0);
 
-    //private TowerBuildArea _goldDeliveryArea;
     private Canvas _canvas;
     private Transform _canvasTransform;
     private Coroutine _pingPongScale;
@@ -68,9 +68,11 @@ public class TowerBuildAreaView : MonoBehaviour
         }
     }
 
-    protected virtual void OnGoldDelivered()
+    private void OnGoldDelivered()
     {
         //_particleSystem.Play();
+        Time.timeScale = 0f;
+        _towerSelectionView.gameObject.SetActive(true);
     }
 
     private void OnGoldDelivering(int currentGoldToDelive, int goldToDelive)
