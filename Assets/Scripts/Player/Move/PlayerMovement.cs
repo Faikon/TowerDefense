@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IStateMachineOwner
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Joystick _joystick;
@@ -18,15 +18,24 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     private Vector3 _movement;
 
+    public IStateMachine StateMachine { get; private set; } = new StateMachine();
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+
+        StateMachine.SwitcState<TestStateA, PlayerMovement>(this);
     }
 
     private void FixedUpdate()
     {
         Move();
         Rotate();
+    }
+
+    private void Update()
+    {
+        StateMachine.UpdateState();
     }
 
     private void Move()
