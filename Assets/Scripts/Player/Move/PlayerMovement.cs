@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour, IStateMachineOwner
     {
         _rigidbody = GetComponent<Rigidbody>();
 
-        StateMachine.SwitcState<TestStateA, PlayerMovement>(this);
+        //StateMachine.SwitcState<TestStateA, PlayerMovement>(this);
     }
 
     private void FixedUpdate()

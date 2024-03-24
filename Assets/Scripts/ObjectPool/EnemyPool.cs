@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool : MonoBehaviour
+public class EnemyPool : BasePool<Enemy>
 {
-    // Start is called before the first frame update
-    void Start()
+    public EnemyPool(Enemy prefab) : base(prefab)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnDespawn(Enemy despawnObject)
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    protected override void OnSpawn(Enemy spawnObject)
+    {
+        throw new System.NotImplementedException();
     }
 }

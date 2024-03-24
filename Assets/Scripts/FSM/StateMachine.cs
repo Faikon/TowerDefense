@@ -12,7 +12,7 @@ public class StateMachine : IStateMachine
         CurrentState?.Update();
     }
 
-    public void SwitcState<T, Owner>(Owner owner)
+    public void SwitchState<T, Owner>(Owner owner, Action<T> callback = null)
         where T : BaseState<Owner>, new()
         where Owner : class, IStateMachineOwner
     {
@@ -24,6 +24,7 @@ public class StateMachine : IStateMachine
 
         T state = new T();
         state.Owner = owner;
+        callback?.Invoke(state);
 
         CurrentState = state;
         CurrentState.Enter();
